@@ -1,21 +1,20 @@
-@define-mixin atSmall {
-  @media (min-width: 530px) {
-    @mixin-content;
-  }
-}
+/*@define-mixin atSmall {*/
+/*  @media (min-width: 530px) {*/
+/*    @mixin-content;*/
+/*  }*/
+/*}*/
 
-@define-mixin atSmallMedium {
-  @media (min-width: 767px) {
-    @mixin-content;
-  }
-}
+/*@define-mixin atSmallMedium {*/
+/*  @media (min-width: 767px) {*/
+/*    @mixin-content;*/
+/*  }*/
+/*}*/
 
-@define-mixin atMedium {
-  @media (min-width: 960px) {
-    @mixin-content;
-  }
-}
-
+/*@define-mixin atMedium {*/
+/*  @media (min-width: 960px) {*/
+/*    @mixin-content;*/
+/*  }*/
+/*}*/
 body {
   color: #333;
   font-family: 'Roboto', sans-serif;
@@ -28,9 +27,9 @@ img {
   height: auto;
 }
 
-a {
-  color: $mainBlue;
-}
+/*a {*/
+/*  color: $mainBlue;*/
+/*}*/
 
 a:hover {
   text-decoration: none;
