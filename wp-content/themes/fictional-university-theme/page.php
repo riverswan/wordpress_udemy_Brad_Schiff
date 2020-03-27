@@ -63,13 +63,14 @@ while ( have_posts() ) {
 				?>
             </ul>
         </div>
-
+        <?php endif; ?>
         <div class="generic-content">
 			<?php the_content(); ?>
         </div>
 
         </div>
 
-	<?php endif;
+<?php
 }
-get_footer();
+
+get_footer(); ?>
