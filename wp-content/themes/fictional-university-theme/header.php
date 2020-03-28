@@ -19,7 +19,7 @@
 <!--                    <li><a href="#">Events</a></li>-->
 <!--                    <li><a href="#">Campuses</a></li>-->
 <!--                    <li><a href="#">Blog</a></li>-->
-<!--                </ul>-->
+<!--                </ul>
 
                 <?php wp_nav_menu(array(
                         'theme_location' => 'header_menu_location'
