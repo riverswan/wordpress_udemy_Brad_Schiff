@@ -462,3 +462,4 @@ composer.lock
 *.sass.map
 *.scss.map
 .idea/
+./node_modules

@@ -38,6 +38,8 @@ gulp.task('watch', function() {
 
   gulp.watch('./**/*.php', function() {
     browserSync.reload();
+  }).on('change',function () {
+    browserSync.reload();
   });
   gulp.watch(settings.themeLocation + 'css/**/*.css', gulp.parallel('waitForStyles'));
   gulp.watch([settings.themeLocation + 'js/modules/*.js', settings.themeLocation + 'js/scripts.js'], gulp.parallel('waitForScripts'));

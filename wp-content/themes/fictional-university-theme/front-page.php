@@ -36,9 +36,7 @@ get_header(); ?>
                     </a>
                     <div class="event-summary__content">
                         <h5 class="event-summary__title headline headline--tiny"><a href="#">Quad Picnic Party</a></h5>
-                        <p>Live music, a taco truck and more can found in our third annual quad picnic day. <a href="#"
-                                                                                                               class="nu gray">Learn
-                                more</a></p>
+                        <p>Live music, a taco truck and more can found in our third annual quad picnic day. <a href="#" class="nu gray">Learn more</a></p>
                     </div>
                 </div>
 
