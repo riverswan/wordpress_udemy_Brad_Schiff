@@ -24,7 +24,7 @@ get_header(); ?>
                 $today = \date('Ymd');
 				$homePageEvents = new WP_Query( array(
 					'post_type'      => 'event',
-					'posts_per_page' => - 1,
+					'posts_per_page' => 2,
 					'meta_key'       => 'event_date',
 					'orderby'        => 'meta_value_num',
 					'order'          => 'ASC',
@@ -67,7 +67,7 @@ get_header(); ?>
 				?>
 
 
-                <p class="t-center no-margin"><a href=<?php echo get_post_type_archive_link( 'event' ) ?>" class=" btn
+                <p class="t-center no-margin"><a href="<?php echo get_post_type_archive_link( 'event' ) ?> " class=" btn
                                                  btn--blue">View All Events</a></p>
 
             </div>
