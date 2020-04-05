@@ -16,7 +16,7 @@ function university_post_types() {
 			'slug' => 'events'
 		),
 		'supports' => array(
-			'title','editor','excerpt'
+			'title','editor','excerpt',
 		)
 	) );
 }
