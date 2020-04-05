@@ -1,6 +1,7 @@
 <?php
 function university_post_types() {
 	register_post_type( 'event', array(
+		'has_archive'       => true,
 		'public'            => true,
 		'labels'            => array(
 			'name'          => 'Events',
@@ -10,7 +11,10 @@ function university_post_types() {
 			'singular_name' => 'Event'
 		),
 		'menu_icon'         => 'dashicons-calendar',
-		'show_in_admin_bar' => true
+		'show_in_admin_bar' => true,
+		'rewrite' => array(
+			'slug' => 'events'
+		)
 	) );
 }
 
