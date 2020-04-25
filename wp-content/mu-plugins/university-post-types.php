@@ -39,6 +39,29 @@ function university_post_types() {
 			'title','editor',
 		)
 	) );
+
+
+	register_post_type( 'professor', array(
+		'has_archive'       => false,
+		'public'            => true,
+		'labels'            => array(
+			'name'          => 'Professors',
+			'add_new_item'  => 'Add New Professor',
+			'edit_item'     => 'Edit Professor',
+			'all_items'     => 'All Professors',
+			'singular_name' => 'Event'
+		),
+		'menu_icon'         => 'dashicons-welcome-learn-more',
+		'show_in_admin_bar' => true,
+		'supports' => array(
+			'title','editor',
+		)
+	) );
+
+
+	
+	
+	
 }
 
 add_action( 'init', 'university_post_types' );
