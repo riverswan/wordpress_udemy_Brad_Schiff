@@ -29,6 +29,37 @@ while ( have_posts() ) {
         </div>
         <div class="generic-content"><?php the_content(); ?></div>
 		<?php
+
+		$related_professors = new WP_Query( array(
+			'post_type'      => 'professor',
+			'posts_per_page' => -1,
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			'meta_query'     => array(
+				array(
+					'key'     => 'related_programs',
+					'compare' => 'LIKE',
+					'value'   => '"' . get_the_ID() . '"',
+				)
+			)
+		) );
+
+
+		if ($related_professors->have_posts()) {
+			echo '<hr class="section-break"/>';
+			echo '<h2 class="headline headline--medium ">'. get_the_title() .' Professors</h2>';
+			while ( $related_professors->have_posts() ) {
+				$related_professors->the_post();
+				?>
+                <li><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></li>
+			<?php }
+			wp_reset_postdata();
+		}
+		?>
+
+<?php
+
+
 		$today          = date( 'Ymd' );
 		$homePageEvents = new WP_Query( array(
 			'post_type'      => 'event',
