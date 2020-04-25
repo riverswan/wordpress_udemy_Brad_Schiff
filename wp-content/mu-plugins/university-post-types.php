@@ -54,7 +54,7 @@ function university_post_types() {
 		'menu_icon'         => 'dashicons-welcome-learn-more',
 		'show_in_admin_bar' => true,
 		'supports' => array(
-			'title','editor',
+			'title','editor','thumbnail'
 		)
 	) );
 
