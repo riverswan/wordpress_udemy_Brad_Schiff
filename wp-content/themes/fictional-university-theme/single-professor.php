@@ -3,13 +3,7 @@ get_header();
 while ( have_posts() ) {
 	the_post(); ?>
 
-	<?php echo page_banner(
-		array(
-			'title'    => 'Hello there',
-			'subtitle' => 'Subtitle',
-            'bgimage'  => ''
-		)
-	) ?>
+	<?php page_banner() ?>
 
     <div class="container container--narrow page-section">
 
