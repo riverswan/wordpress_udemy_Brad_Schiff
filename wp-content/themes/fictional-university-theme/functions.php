@@ -95,3 +95,10 @@ function page_banner($args = array()){
 	</div>
 <?php
 }
+
+add_filter('acf/fields/google_map/api','university_map_key');
+
+function university_map_key($api){
+    $api['key'] = 'AIzaSyAY1G5SCCspxFA3TDujQuGlDW5I4EwzIcY';
+    return $api;
+}
