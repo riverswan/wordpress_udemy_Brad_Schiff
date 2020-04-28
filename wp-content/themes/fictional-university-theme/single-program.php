@@ -69,41 +69,9 @@ while ( have_posts() ) {
 <?php
 
 
-		$today          = date( 'Ymd' );
-		$homePageEvents = new WP_Query( array(
-			'post_type'      => 'event',
-			'posts_per_page' => 2,
-			'meta_key'       => 'event_date',
-			'orderby'        => 'meta_value_num',
-			'order'          => 'ASC',
-			'meta_query'     => array(
-				array(
-					'key'     => 'event_date',
-					'compare' => '>=',
-					'value'   => $today,
-					'type'    => 'numeric'
-				),
-				array(
-					'key'     => 'related_programs',
-					'compare' => 'LIKE',
-					'value'   => '"' . get_the_ID() . '"',
-				)
-			)
-		) );
-
-
-		if ($homePageEvents->have_posts()) {
-			echo '<hr class="section-break"/>';
-			echo '<h2 class="headline headline--medium ">Upcoming '. get_the_title() .' Event</h2>';
-			while ( $homePageEvents->have_posts() ) {
-				$homePageEvents->the_post();
-				get_template_part('/template-parts/event');
-			}
-			wp_reset_postdata();
-		}
-
 		$related_campuses = get_field('related_campuses');
 		if ($related_campuses){
+		    echo '<hr class="section-break" />';
 		    echo "<h2 class='headline--medium headline'>" .get_the_title(). " is Available at this Campuses</h2>";
             echo '<ul class="min-list link-list">';
 			foreach ( $related_campuses as $related_campus ) {
@@ -111,7 +79,6 @@ while ( have_posts() ) {
                 <li><a href="<?php echo get_the_permalink($related_campus) ?>"><?php echo get_the_title($related_campus)?></a></li>
                 <?php
 		    }
-
         }
 		?>
     </div>

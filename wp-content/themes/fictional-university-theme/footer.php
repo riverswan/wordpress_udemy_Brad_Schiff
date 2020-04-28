@@ -57,6 +57,15 @@
 
     </div>
 </footer>
+<div class="search-overlay">
+    <div class="search-overlay__top">
+        <div class="container">
+            <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+            <input type="text" class="search-term" placeholder="Type your info here">
+            <i class="fa fa-window-close search-overlay__close"></i>
+        </div>
+    </div>
+</div>
 <?php wp_footer(); ?>
 </body>
 </html>
