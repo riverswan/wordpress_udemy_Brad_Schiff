@@ -101,6 +101,18 @@ while ( have_posts() ) {
 			}
 			wp_reset_postdata();
 		}
+
+		$related_campuses = get_field('related_campuses');
+		if ($related_campuses){
+		    echo "<h2 class='headline--medium headline'>" .get_the_title(). " is Available at this Campuses</h2>";
+            echo '<ul class="min-list link-list">';
+			foreach ( $related_campuses as $related_campus ) {
+			    ?>
+                <li><a href="<?php echo get_the_permalink($related_campus) ?>"><?php echo get_the_title($related_campus)?></a></li>
+                <?php
+		    }
+
+        }
 		?>
     </div>
 

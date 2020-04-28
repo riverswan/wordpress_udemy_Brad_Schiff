@@ -16,9 +16,7 @@ page_banner(array('title' => 'All Campuses','subtitle'=>'Several campuses   '));
 					<?php echo $map_location['address'] ?>
                 </div>
 
-			<?php }
-			echo paginate_links();
-			?>
+			<?php }	?>
 		</div>
 	</div>
 

@@ -1,26 +1,16 @@
 <?php declare( strict_types=1 );
 get_header();
 while ( have_posts() ) {
-	the_post(); ?>
+	the_post();
+	page_banner();
+	?>
 
-	<div class="page-banner">
-		<div class="page-banner__bg-image"
-		     style="background-image: url(<?php echo get_theme_file_uri( '/images/ocean.jpg' ) ?>);"></div>
-		<div class="page-banner__content container container--narrow">
-			<h1 class="page-banner__title">
-				<?php the_title() ?>
-			</h1>
-			<div class="page-banner__intro">
-				<?php echo 'DON\'T FORGET TO REPLACE ME LATER' ?>
-			</div>
-		</div>
-	</div>
 	<div class="container container--narrow page-section">
 		<div class="metabox metabox--position-up metabox--with-home-link">
 			<p>
-				<a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link( 'program' ) ?>">
+				<a class="metabox__blog-home-link" href="<?php echo get_post_type_archive_link( 'campus' ) ?>">
 					<i class="fa fa-home" aria-hidden="true">
-					</i> All Programs
+					</i> All Campuses
 				</a>
 				<span class="metabox__main">
 					<?php the_title() ?>
@@ -28,16 +18,26 @@ while ( have_posts() ) {
 			</p>
 		</div>
 		<div class="generic-content"><?php the_content(); ?></div>
+		<div class="container container--narrow page-section">
+			<div class="acf-map">
+				<?php $map_location = get_field('map_location') ?>
+
+				<div data-lat="<?php echo $map_location['lat'] ?>" data-lng="<?php echo $map_location['lng'] ?>" class="marker">
+					<h3><?php the_title() ?></h3>
+					<?php echo $map_location['address'] ?>
+				</div>
+			</div>
+		</div>
 		<?php
 
-		$related_professors = new WP_Query( array(
-			'post_type'      => 'professor',
+		$related_programs = new WP_Query( array(
+			'post_type'      => 'program',
 			'posts_per_page' => -1,
 			'orderby'        => 'title',
 			'order'          => 'ASC',
 			'meta_query'     => array(
 				array(
-					'key'     => 'related_programs',
+					'key'     => 'related_campuses',
 					'compare' => 'LIKE',
 					'value'   => '"' . get_the_ID() . '"',
 				)
@@ -45,17 +45,16 @@ while ( have_posts() ) {
 		) );
 
 
-		if ($related_professors->have_posts()) {
+		if ($related_programs->have_posts()) {
 			echo '<hr class="section-break"/>';
-			echo '<h2 class="headline headline--medium ">'. get_the_title() .' Professors</h2>';
-			echo '<ul class="professor-cards">';
-			while ( $related_professors->have_posts() ) {
-				$related_professors->the_post();
+			echo '<h2 class="headline headline--medium ">Programs available at this campus</h2>';
+			echo '<ul class="min-list link-list">';
+			while ( $related_programs->have_posts() ) {
+				$related_programs->the_post();
 				?>
-				<li class="professor-card__list-item">
-					<a class="professor-card" href="<?php the_permalink(); ?>">
-						<img src="<?php the_post_thumbnail_url('professor_landscape'); ?>" alt="123" class="professor-card__image">
-						<span class="professor-card__name"><?php the_title() ?></span>
+				<li >
+					<a href="<?php the_permalink(); ?>">
+						<?php the_title() ?>
 					</a>
 				</li>
 				<?php
