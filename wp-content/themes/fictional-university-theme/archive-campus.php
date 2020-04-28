@@ -12,7 +12,8 @@ page_banner(array('title' => 'All Campuses','subtitle'=>'Several campuses   '));
 				?>
 
 				<div data-lat="<?php echo $map_location['lat'] ?>" data-lng="<?php echo $map_location['lng'] ?>" class="marker">
-
+                    <h3><a href="<?php the_permalink(); ?>"><?php the_title() ?></a></h3>
+					<?php echo $map_location['address'] ?>
                 </div>
 
 			<?php }
