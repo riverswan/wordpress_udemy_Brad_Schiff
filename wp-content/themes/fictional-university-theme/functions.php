@@ -15,9 +15,9 @@ function university_features() {
 	register_nav_menu( 'footer_location_two', 'Footer Location Two' );
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
-	add_image_size('professor_landscape',400,260,true);
-	add_image_size('professor_portrait',480,650,true);
-	add_image_size('page_banner',1500,350,true);
+	add_image_size( 'professor_landscape', 400, 260, true );
+	add_image_size( 'professor_portrait', 480, 650, true );
+	add_image_size( 'page_banner', 1500, 350, true );
 }
 
 add_action( 'after_setup_theme', 'university_features' );
@@ -61,44 +61,44 @@ function special_nav_class( $classes, $item ) {
 }
 
 
-
-function page_banner($args = array()){
-	if ( ! $args['title'] ){
+function page_banner( $args = array() ) {
+	if ( ! $args['title'] ) {
 		$args['title'] = get_the_title();
 	}
 
 	if ( ! $args['subtitle'] ) {
-	    $args['subtitle'] = get_field('page_banner_subtitle');
-    }
+		$args['subtitle'] = get_field( 'page_banner_subtitle' );
+	}
 
-	if ( ! $args['photo'] ){
-	    if (get_field('page_banner_background_image')){
-	        $args['photo'] = get_field('page_banner_background_image')['sizes']['page_banner'];
-        }else {
-		    $args['photo'] = get_theme_file_uri('/images/ocean.jpg');
-        }
-    }
+	if ( ! $args['photo'] ) {
+		if ( get_field( 'page_banner_background_image' ) ) {
+			$args['photo'] = get_field( 'page_banner_background_image' )['sizes']['page_banner'];
+		} else {
+			$args['photo'] = get_theme_file_uri( '/images/ocean.jpg' );
+		}
+	}
 	?>
-	<div class="page-banner">
-		<div class="page-banner__bg-image"
-		     style="background-image: url(<?php
+    <div class="page-banner">
+        <div class="page-banner__bg-image"
+             style="background-image: url(<?php
 		     echo $args['photo'];
 		     ?>);"></div>
-		<div class="page-banner__content container container--narrow">
-			<h1 class="page-banner__title">
-				<?php echo $args['title']?>
-			</h1>
-			<div class="page-banner__intro">
+        <div class="page-banner__content container container--narrow">
+            <h1 class="page-banner__title">
+				<?php echo $args['title'] ?>
+            </h1>
+            <div class="page-banner__intro">
 				<?php echo $args['subtitle'] ?>
-			</div>
-		</div>
-	</div>
-<?php
+            </div>
+        </div>
+    </div>
+	<?php
 }
 
-add_filter('acf/fields/google_map/api','university_map_key');
+add_filter( 'acf/fields/google_map/api', 'university_map_key' );
 
-function university_map_key($api){
-    $api['key'] = 'AIzaSyAY1G5SCCspxFA3TDujQuGlDW5I4EwzIcY';
-    return $api;
+function university_map_key( $api ) {
+	$api['key'] = 'AIzaSyAY1G5SCCspxFA3TDujQuGlDW5I4EwzIcY';
+
+	return $api;
 }
