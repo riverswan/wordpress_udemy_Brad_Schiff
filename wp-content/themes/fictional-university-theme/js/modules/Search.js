@@ -7,6 +7,7 @@ class Search {
         this.openButtom = $('.js-search-trigger');
         this.closeButton = $('.search-overlay__close');
         this.searchOverlay = $('.search-overlay');
+        this.previousValue;
         this.searchField = $('#search-term');
         this.isSpinnerVisible = false;
         this.events();
@@ -19,20 +20,29 @@ class Search {
         this.openButtom.on('click', this.openOverlay.bind(this));
         this.closeButton.on('click', this.closeOverlay.bind(this));
         $(document).on('keydown', this.keyPressDispatcher.bind(this));
-        this.searchField.on('keydown', this.typingLogic.bind(this));
+        this.searchField.on('keyup', this.typingLogic.bind(this));
     };
 
-    typingLogic(){
-        clearTimeout(this.typingTimer);
-        if (! this.isSpinnerVisible ) {
-            this.resultsDiv.html('<div class="spinner-loader"></div>');
-            this.isSpinnerVisible = true;
+    typingLogic() {
+        if (this.searchField.val() !== this.previousValue) {
+            clearTimeout(this.typingTimer);
+            if (this.searchField.val()) {
+                if (!this.isSpinnerVisible) {
+                    this.resultsDiv.html('<div class="spinner-loader"></div>');
+                    this.isSpinnerVisible = true;
+                }
+                this.typingTimer = setTimeout(this.getResults.bind(this), 500);
+            } else {
+                this.resultsDiv.html('');
+                this.isSpinnerVisible = false;
+            }
+
         }
-        this.typingTimer = setTimeout(this.getResults.bind(this),500);
+        this.previousValue = this.searchField.val()
     }
 
-    getResults(){
-        this.resultsDiv.html(this.searchField.val());
+    getResults() {
+        this.resultsDiv.html("qwe");
         this.isSpinnerVisible = false;
     }
 
