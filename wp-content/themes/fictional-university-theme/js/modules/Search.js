@@ -49,7 +49,7 @@ class Search {
             $.getJSON(universityData.root_url + '/wp-json/wp/v2/pages?search=' + this.searchField.val())
         ).then(
             (posts, pages) => {
-                let combinedRes = posts.concat(pages);
+                let combinedRes = posts[0].concat(pages[0]);
                 console.log(combinedRes);
                 this.resultsDiv.html(
                     `
@@ -60,6 +60,8 @@ class Search {
                     `
                 );
                 this.isSpinnerVisible = false;
+            },()=>{
+                this.resultsDiv.html('<p>Unexpected error</p>')
             }
         )
     }

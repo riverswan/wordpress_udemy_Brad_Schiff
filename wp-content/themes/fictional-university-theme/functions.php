@@ -1,5 +1,14 @@
 <?php
 
+add_action('rest_api_init','university_custom_rest');
+function university_custom_rest(){
+    register_rest_field('post','author_name',array(
+            'get_callback' => function(){
+                return get_the_author();
+            }
+    ));
+}
+
 function university_files() {
 	wp_enqueue_script( 'google-map', '//maps.googleapis.com/maps/api/js?key=AIzaSyAY1G5SCCspxFA3TDujQuGlDW5I4EwzIcY', null, '1.0', true );
 	wp_enqueue_script( 'main-university-js', get_theme_file_uri( 'js/scripts-bundled.js' ), null, '1.0', true );
