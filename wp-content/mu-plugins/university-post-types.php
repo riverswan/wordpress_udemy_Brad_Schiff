@@ -42,6 +42,7 @@ function university_post_types() {
 
 
 	register_post_type( 'professor', array(
+		'show_in_rest' => true,
 		'has_archive'       => false,
 		'public'            => true,
 		'labels'            => array(
