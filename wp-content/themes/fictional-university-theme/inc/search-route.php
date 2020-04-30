@@ -9,9 +9,10 @@ function university_register_search() {
 	) );
 }
 
-function university_search_results() {
+function university_search_results( $data ) {
 	$professors         = new WP_Query( array(
-		'post_type' => 'professor'
+		'post_type' => 'professor',
+		's'         => sanitize_text_field( $data['term'] )
 	) );
 	$professors_results = array();
 
