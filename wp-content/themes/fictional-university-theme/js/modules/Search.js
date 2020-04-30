@@ -3,6 +3,7 @@ import $ from 'jquery';
 class Search {
 
     constructor() {
+        this.addSearchHtml();
         this.resultsDiv = $('#search-overlay__results');
         this.openButtom = $('.js-search-trigger');
         this.closeButton = $('.search-overlay__close');
@@ -43,7 +44,7 @@ class Search {
 
     getResults() {
         $.getJSON(
-            'http://localhost:3000/wp-json/wp/v2/posts?search=' + this.searchField.val(),
+            universityData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val(),
             (posts) => {
 
                 this.resultsDiv.html(
@@ -54,6 +55,7 @@ class Search {
                     ${ posts.length ? `</ul>` : ``}
                     `
                 );
+                this.isSpinnerVisible = false;
             },
         )
     }
@@ -61,12 +63,16 @@ class Search {
     openOverlay() {
         this.searchOverlay.addClass('search-overlay--active');
         $('body').addClass('body-no-scroll');
+        setTimeout(()=>{
+            this.searchField.focus();
+        },301);
         this.isOverlayOpened = true;
     };
 
     closeOverlay() {
         this.searchOverlay.removeClass('search-overlay--active');
         $('body').removeClass('body-no-scroll');
+        this.searchField.val('');
         this.isOverlayOpened = false;
     };
 
@@ -78,6 +84,22 @@ class Search {
         if (key.keyCode === 27 && this.isOverlayOpened) {
             this.closeOverlay();
         }
+    }
+
+    addSearchHtml(){
+        $('body').append(`
+            <div class="search-overlay">
+    <div class="search-overlay__top">
+        <div class="container">
+            <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
+            <input type="text" class="search-term" id="search-term" placeholder="Type your info here">
+            <i class="fa fa-window-close search-overlay__close"></i>
+        </div>
+    </div>
+    <div class="container">
+        <div id="search-overlay__results"></div>
+    </div>
+</div>`)
     }
 }
 
