@@ -45,38 +45,31 @@ class Search {
     getResults() {
 
         $.when(
-
+            $.getJSON(universityData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val()),
+            $.getJSON(universityData.root_url + '/wp-json/wp/v2/pages?search=' + this.searchField.val())
         ).then(
-            (data)=>{
-
-            }
-        );
-
-        $.getJSON(universityData.root_url + '/wp-json/wp/v2/posts?search=' + this.searchField.val(),
-            (posts) => {
-                $.getJSON(universityData.root_url + '/wp-json/wp/v2/pages?search=' + this.searchField.val(),(pages)=>{
-                    let combinedRes = posts.concat(pages);
-                    console.log(combinedRes);
-                    this.resultsDiv.html(
-                        `
+            (posts, pages) => {
+                let combinedRes = posts.concat(pages);
+                console.log(combinedRes);
+                this.resultsDiv.html(
+                    `
                     <h2 class="search-overlay__section-title">General Information</h2>
                     ${combinedRes.length ? `<ul class="link-list min-list">` : `<p>No general info matches search</p>`}
-                     ${ combinedRes.map((item)=>`<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('') }
-                    ${ combinedRes.length ? `</ul>` : ``}
+                     ${combinedRes.map((item) => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
+                    ${combinedRes.length ? `</ul>` : ``}
                     `
-                    );
-                    this.isSpinnerVisible = false;
-                })
-            },
+                );
+                this.isSpinnerVisible = false;
+            }
         )
     }
 
     openOverlay() {
         this.searchOverlay.addClass('search-overlay--active');
         $('body').addClass('body-no-scroll');
-        setTimeout(()=>{
+        setTimeout(() => {
             this.searchField.focus();
-        },301);
+        }, 301);
         this.isOverlayOpened = true;
     };
 
@@ -97,7 +90,7 @@ class Search {
         }
     }
 
-    addSearchHtml(){
+    addSearchHtml() {
         $('body').append(`
             <div class="search-overlay">
     <div class="search-overlay__top">
