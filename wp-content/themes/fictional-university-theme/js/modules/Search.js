@@ -44,7 +44,7 @@ class Search {
 
     getResults() {
 
-        $.getJSON(universityData.root_url + '/wp-json/university/v1/search?term=' + this.searchField.val(),res=>{
+        $.getJSON(universityData.root_url + '/wp-json/university/v1/search?term=' + this.searchField.val(), res => {
             this.resultsDiv.html(`
                 <div class="row">
                     <div class="one-third">
@@ -56,14 +56,47 @@ class Search {
 </div>
                     <div class="one-third">
                     <h2 class="search-overlay__section-title">Programs</h2>
+                    ${res.program.length ? `<ul class="link-list min-list">` : `<p>No programs matches search. <a href="${universityData.root_url}/programs">View all programs</a></p>`}
+                     ${res.program.map((item) => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+                    ${res.program.length ? `</ul>` : ``}
                     <h2 class="search-overlay__section-title">Professors</h2>
+                    ${res.professor.length ? `<ul class="professor-cards">` : `<p>No professors matches search.</p>`}
+                     ${res.professor.map((item) => `
+                        <li class="professor-card__list-item">
+                <a class="professor-card" href="${item.permalink}">
+                <img src="${item.image}" alt="123" class="professor-card__image">
+               <span class="professor-card__name">${item.title}</span>
+                </a>
+                </li>
+                     `).join('')}
+                    ${res.professor.length ? `</ul>` : ``}
 </div>
                     <div class="one-third">
                     <h2 class="search-overlay__section-title">Campuses</h2>
+                    ${res.campus.length ? `<ul class="link-list min-list">` : `<p>No campuses matches search. <a href="${universityData.root_url}/campuses">View all campuses</a></p>`}
+                     ${res.campus.map((item) => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+                    ${res.campus.length ? `</ul>` : ``}
                     <h2 class="search-overlay__section-title">Events</h2>
+                    ${res.event.length ? `` : `<p>No events matches search. <a href="${universityData.root_url}/events">View all events</a></p>`}
+                    ${res.event.map((item) => `
+                   
+                    <div class="event-summary">
+	<a class="event-summary__date t-center" href="${item.permalink}">
+                            <span class="event-summary__month">${item.month}</span>
+		<span class="event-summary__day">${item.day}</span>
+	</a>
+	<div class="event-summary__content">
+		<h5 class="event-summary__title headline headline--tiny"><a
+				href="${item.permalink}">${item.title}</a></h5>
+		<p>${item.description}<a href="${item.permalink}" class="nu gray">Learn more</a></p>
+	</div>
+</div>
+                    
+                    `).join('')}
 </div>
 </div>
             `);
+            this.isSpinnerVisible = false;
         });
 
 

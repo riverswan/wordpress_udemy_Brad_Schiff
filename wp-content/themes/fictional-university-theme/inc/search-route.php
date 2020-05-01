@@ -36,21 +36,34 @@ function university_search_results( $data ) {
 		if ( get_post_type() === 'professor' ) {
 			array_push( $results['professor'], array(
 				'title'     => get_the_title(),
-				'permalink' => get_the_permalink()
+				'permalink' => get_the_permalink(),
+				'image'     => get_the_post_thumbnail_url( 0, 'professor_landscape' ),
 			) );
 		}
 
 		if ( get_post_type() === 'program' ) {
 			array_push( $results['program'], array(
 				'title'     => get_the_title(),
-				'permalink' => get_the_permalink()
+				'permalink' => get_the_permalink(),
+				'id'        => get_the_ID()
 			) );
 		}
 
 		if ( get_post_type() === 'event' ) {
+			$eventDate   = new DateTime( get_field( 'event_date' ) );
+			$description = null;
+			if ( has_excerpt() ) {
+				$description = get_the_excerpt();
+			} else {
+				$description = wp_trim_words( get_the_content(), 10 );
+			}
+
 			array_push( $results['event'], array(
-				'title'     => get_the_title(),
-				'permalink' => get_the_permalink()
+				'title'       => get_the_title(),
+				'permalink'   => get_the_permalink(),
+				'month'       => $eventDate->format( 'M' ),
+				'day'         => $eventDate->format( 'd' ),
+				'description' => $description
 			) );
 		}
 
@@ -62,6 +75,41 @@ function university_search_results( $data ) {
 		}
 
 	}
+
+	if ($results['program']) {
+		$programs_meta_query = array(
+			'relation' => 'OR'
+		);
+
+		foreach ( $results['program'] as $result ) {
+			array_push($programs_meta_query, array(
+				'key'     => 'related_programs',
+				'compare' => 'LIKE',
+				'value'   => '"' . $result['id'] . '"'
+			));
+		}
+
+		$program_relationship_query = new WP_Query( array(
+			'post_type'  => 'professor',
+			'meta_query' => $programs_meta_query
+		) );
+
+		while ( $program_relationship_query->have_posts() ) {
+			$program_relationship_query->the_post();
+
+			if ( get_post_type() === 'professor' ) {
+				array_push( $results['professor'], array(
+					'title'     => get_the_title(),
+					'permalink' => get_the_permalink(),
+					'image'     => get_the_post_thumbnail_url( 0, 'professor_landscape' )
+				) );
+			}
+		}
+
+		$results['professor'] = array_values( array_unique( $results['professor'], SORT_REGULAR ) );
+
+	}
+
 
 	return $results;
 }

@@ -28,7 +28,7 @@ function university_post_types() {
 			'add_new_item'  => 'Add New Program',
 			'edit_item'     => 'Edit Program',
 			'all_items'     => 'All Programs',
-			'singular_name' => 'Event'
+			'singular_name' => 'program'
 		),
 		'menu_icon'         => 'dashicons-calendar',
 		'show_in_admin_bar' => true,
@@ -36,7 +36,7 @@ function university_post_types() {
 			'slug' => 'programs'
 		),
 		'supports' => array(
-			'title','editor',
+			'title',
 		)
 	) );
 
@@ -50,7 +50,7 @@ function university_post_types() {
 			'add_new_item'  => 'Add New Professor',
 			'edit_item'     => 'Edit Professor',
 			'all_items'     => 'All Professors',
-			'singular_name' => 'Event'
+			'singular_name' => 'professor'
 		),
 		'menu_icon'         => 'dashicons-welcome-learn-more',
 		'show_in_admin_bar' => true,
@@ -69,7 +69,7 @@ function university_post_types() {
 			'add_new_item'  => 'Add New Campus',
 			'edit_item'     => 'Edit Campus',
 			'all_items'     => 'All Campuses',
-			'singular_name' => 'Event'
+			'singular_name' => 'campus'
 		),
 		'menu_icon'         => 'dashicons-location-alt',
 		'show_in_admin_bar' => true,
