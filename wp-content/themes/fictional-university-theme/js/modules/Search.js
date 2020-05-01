@@ -109,6 +109,7 @@ class Search {
             this.searchField.focus();
         }, 301);
         this.isOverlayOpened = true;
+        return false;
     };
 
     closeOverlay() {

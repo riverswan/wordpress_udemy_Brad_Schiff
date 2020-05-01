@@ -66,9 +66,12 @@ while ( have_posts() ) {
             </div>
 		<?php endif; ?>
         <div class="generic-content">
-            <form action="<?php echo esc_url( site_url( '/' ) ) ?>">
-                <input type="search" name="s">
-                <input type="submit" value="Search">
+            <form action="<?php echo esc_url( site_url( '/' ) ) ?>" method="get" class="search-form">
+	            <label for="s" class="headline headline--medium">Perform a new Search</label>
+                <div class="search-form-row">
+	                <input type="search" name="s" id="s" class="s" placeholder="Enter your value">
+	                <input type="submit" value="Search" class="search-submit">
+                </div>
             </form>
         </div>
 
