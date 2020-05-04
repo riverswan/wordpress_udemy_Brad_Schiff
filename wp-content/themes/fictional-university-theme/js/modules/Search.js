@@ -98,8 +98,6 @@ class Search {
             `);
             this.isSpinnerVisible = false;
         });
-
-
     }
 
     openOverlay() {
