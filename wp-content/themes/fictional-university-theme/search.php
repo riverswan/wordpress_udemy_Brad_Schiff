@@ -6,7 +6,6 @@ page_banner(array(
 	'subtitle' => 'You searched for &ldquo;' . esc_html(get_search_query(false))  . '&rdquo;'
 ));
 ?>
-
     <div class="container container--narrow page-section">
 		<?php
 		if (have_posts()) {
@@ -25,6 +24,4 @@ page_banner(array(
 
     </div>
 
-<?php get_footer();
-
-?>
+<?php get_footer(); ?>
