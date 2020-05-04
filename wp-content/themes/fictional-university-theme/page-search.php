@@ -2,8 +2,6 @@
 get_header();
 while ( have_posts() ) {
 	the_post(); ?>
-
-
     <div class="page-banner">
         <div class="page-banner__bg-image"
              style="background-image: url(<?php echo get_theme_file_uri( '/images/ocean.jpg' ) ?>);"></div>
@@ -67,10 +65,10 @@ while ( have_posts() ) {
 		<?php endif; ?>
         <div class="generic-content">
             <form action="<?php echo esc_url( site_url( '/' ) ) ?>" method="get" class="search-form">
-	            <label for="s" class="headline headline--medium">Perform a new Search</label>
+                <label for="s" class="headline headline--medium">Perform a new Search</label>
                 <div class="search-form-row">
-	                <input type="search" name="s" id="s" class="s" placeholder="Enter your value">
-	                <input type="submit" value="Search" class="search-submit">
+                    <input type="search" name="s" id="s" class="s" placeholder="Enter your value">
+                    <input type="submit" value="Search" class="search-submit">
                 </div>
             </form>
         </div>
