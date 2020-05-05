@@ -121,3 +121,13 @@ function university_map_key( $api ) {
 
 	return $api;
 }
+
+add_action('admin_init','redirect_subs_to_frontend');
+
+function redirect_subs_to_frontend(){
+    $curr_user = wp_get_current_user();
+    if( count($curr_user->roles) === 1 && $curr_user->roles[0] === 'subscriber') {
+        wp_redirect(site_url('/'));
+        exit();
+    }
+}
