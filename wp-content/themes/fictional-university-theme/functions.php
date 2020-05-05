@@ -147,3 +147,17 @@ add_filter('login_headerurl','our_header_url');
 function our_header_url(){
 	return esc_url( site_url('/') );
 }
+
+add_action('login_enqueue_scripts','our_login_css');
+
+function our_login_css(){
+	wp_enqueue_style( 'university_main_styles', get_stylesheet_uri() );
+	wp_enqueue_style( 'custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i' );
+}
+
+
+add_filter('login_headertitle','our_login_title');
+
+function our_login_title(){
+    return get_bloginfo('name');
+}
