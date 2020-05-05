@@ -131,3 +131,19 @@ function redirect_subs_to_frontend(){
         exit();
     }
 }
+
+add_action('wp_loaded','no_admin_bar');
+
+function no_admin_bar(){
+    $curr_user = wp_get_current_user();
+    if( count($curr_user->roles) === 1 && $curr_user->roles[0] === 'subscriber') {
+        show_admin_bar(false);
+    }
+}
+
+
+add_filter('login_headerurl','our_header_url');
+
+function our_header_url(){
+	return esc_url( site_url('/') );
+}
