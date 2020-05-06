@@ -27,10 +27,11 @@ while ( have_posts() ) {
                     <input class="note-title-field" type="text" value="<?php echo esc_attr( get_the_title() ) ?>">
                     <span class="edit-note"><i class="fa fa-pencil"></i>Edit</span>
                     <span class="delete-note"><i class="fa fa-trash-o"></i>Delete</span>
-                    <textarea class="note-body-field" name="" id="" cols="30" rows="10"><?php echo esc_attr( get_the_content() ) ?></textarea>
+                    <textarea class="note-body-field" name="" id="" cols="30"
+                              rows="10"><?php echo esc_attr( get_the_content() ) ?></textarea>
                 </li>
 
-                <?php
+				<?php
 			}
 			?>
         </ul>
