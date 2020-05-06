@@ -161,3 +161,4 @@ add_filter('login_headertitle','our_login_title');
 function our_login_title(){
     return get_bloginfo('name');
 }
+
