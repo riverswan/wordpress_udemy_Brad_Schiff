@@ -6,7 +6,8 @@ class MyNotes {
     }
 
     events(){
-        $('.delete-note').on('click',this.deleteNote.bind(this))
+        $('.delete-note').on('click',this.deleteNote);
+        $('.edit-note').on('click',this.editNote);
     }
 
     deleteNote(e){
@@ -19,14 +20,20 @@ class MyNotes {
                 xhr.setRequestHeader('X-WP-Nonce',universityData.nonce);
             },
             success :  (resp) => {
-                console.log('deleted');
-                console.log(resp);
+                thisNote.slideUp();
             },
             error : (resp)=>{
                 console.log('error');
                 console.log(resp);
             },
         })
+    }
+
+
+    editNote(e){
+        let thisNote = $(e.target).parents('li');
+        thisNote.find('.update-note').addClass('update-note--visible');
+        thisNote.find('.note-title-field, .note-body-field').removeAttr('readonly').addClass('note-active-field')
     }
 
 }
