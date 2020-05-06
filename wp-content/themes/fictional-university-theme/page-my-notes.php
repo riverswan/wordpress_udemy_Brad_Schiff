@@ -23,7 +23,7 @@ while ( have_posts() ) {
 			while ( $user_notes->have_posts() ) {
 				$user_notes->the_post(); ?>
 
-                <li>
+                <li data-id="<?php the_ID(); ?>">
                     <input class="note-title-field" type="text" value="<?php echo esc_attr( get_the_title() ) ?>">
                     <span class="edit-note"><i class="fa fa-pencil"></i>Edit</span>
                     <span class="delete-note"><i class="fa fa-trash-o"></i>Delete</span>
