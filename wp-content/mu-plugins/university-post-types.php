@@ -80,6 +80,26 @@ function university_post_types() {
 			'title','editor','excerpt',
 		)
 	) );
+
+
+
+
+	register_post_type( 'note', array(
+		'show_in_rest'      => true,
+		'supports' => array(
+			'title','editor'
+		),
+		'public'            => false,
+		'labels'            => array(
+			'name'          => 'Notes',
+			'add_new_item'  => 'Add New Note',
+			'edit_item'     => 'Edit Note',
+			'all_items'     => 'All Notes',
+			'singular_name' => 'Note'
+		),
+		'menu_icon'         => 'dashicons-welcome-write-blog',
+		'show_ui'           => true,
+	) );
 	
 }
 
