@@ -112,8 +112,10 @@ class MyNotes {
                 `).prependTo('#mynotes').hide().slideDown();
             },
             error : (resp)=>{
-                console.log('error');
                 console.log(resp);
+                if (resp.responseText === 'You have reached note limit') {
+                    $('.note-limit-message').addClass('active');
+                }
             },
         })
     }
