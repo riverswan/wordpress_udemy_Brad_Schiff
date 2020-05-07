@@ -34,7 +34,7 @@ while ( have_posts() ) {
                     <span class="edit-note"><i class="fa fa-pencil"></i>Edit</span>
                     <span class="delete-note"><i class="fa fa-trash-o"></i>Delete</span>
                     <textarea readonly class="note-body-field" name="" id="" cols="30"
-                              rows="10"><?php echo esc_attr( get_the_content() ) ?></textarea>
+                              rows="10"><?php echo esc_textarea( get_the_content() ) ?></textarea>
 	                <span class="update-note btn btn--blue btn--small"><i class="fa fa-arrow-right"></i>Save</span>
                 </li>
 

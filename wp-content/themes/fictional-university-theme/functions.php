@@ -1,12 +1,12 @@
 <?php
-require get_theme_file_path('/inc/search-route.php');
-add_action('rest_api_init','university_custom_rest');
-function university_custom_rest(){
-    register_rest_field('post','author_name',array(
-            'get_callback' => function(){
-                return get_the_author();
-            }
-    ));
+require get_theme_file_path( '/inc/search-route.php' );
+add_action( 'rest_api_init', 'university_custom_rest' );
+function university_custom_rest() {
+	register_rest_field( 'post', 'author_name', array(
+		'get_callback' => function () {
+			return get_the_author();
+		}
+	) );
 }
 
 function university_files() {
@@ -17,10 +17,10 @@ function university_files() {
 	wp_enqueue_style( 'university_main_styles', get_stylesheet_uri() );
 
 	// add some properties to js script
-	wp_localize_script('main-university-js','universityData',array(
-        'root_url' => get_site_url(),
-        'nonce' => wp_create_nonce('wp_rest')
-    ));
+	wp_localize_script( 'main-university-js', 'universityData', array(
+		'root_url' => get_site_url(),
+		'nonce'    => wp_create_nonce( 'wp_rest' )
+	) );
 }
 
 add_action( 'wp_enqueue_scripts', 'university_files' );
@@ -123,52 +123,58 @@ function university_map_key( $api ) {
 	return $api;
 }
 
-add_action('admin_init','redirect_subs_to_frontend');
+add_action( 'admin_init', 'redirect_subs_to_frontend' );
 
-function redirect_subs_to_frontend(){
-    $curr_user = wp_get_current_user();
-    if( count($curr_user->roles) === 1 && $curr_user->roles[0] === 'subscriber') {
-        wp_redirect(site_url('/'));
-        exit();
-    }
+function redirect_subs_to_frontend() {
+	$curr_user = wp_get_current_user();
+	if ( count( $curr_user->roles ) === 1 && $curr_user->roles[0] === 'subscriber' ) {
+		wp_redirect( site_url( '/' ) );
+		exit();
+	}
 }
 
-add_action('wp_loaded','no_admin_bar');
+add_action( 'wp_loaded', 'no_admin_bar' );
 
-function no_admin_bar(){
-    $curr_user = wp_get_current_user();
-    if( count($curr_user->roles) === 1 && $curr_user->roles[0] === 'subscriber') {
-        show_admin_bar(false);
-    }
+function no_admin_bar() {
+	$curr_user = wp_get_current_user();
+	if ( count( $curr_user->roles ) === 1 && $curr_user->roles[0] === 'subscriber' ) {
+		show_admin_bar( false );
+	}
 }
 
 
-add_filter('login_headerurl','our_header_url');
+add_filter( 'login_headerurl', 'our_header_url' );
 
-function our_header_url(){
-	return esc_url( site_url('/') );
+function our_header_url() {
+	return esc_url( site_url( '/' ) );
 }
 
-add_action('login_enqueue_scripts','our_login_css');
+add_action( 'login_enqueue_scripts', 'our_login_css' );
 
-function our_login_css(){
+function our_login_css() {
 	wp_enqueue_style( 'university_main_styles', get_stylesheet_uri() );
 	wp_enqueue_style( 'custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i' );
 }
 
 
-add_filter('login_headertitle','our_login_title');
+add_filter( 'login_headertitle', 'our_login_title' );
 
-function our_login_title(){
-    return get_bloginfo('name');
+function our_login_title() {
+	return get_bloginfo( 'name' );
 }
 
 
-add_filter('wp_insert_post_data','make_note_private');
+add_filter( 'wp_insert_post_data', 'make_note_private' );
 
-function make_note_private($data){
-	if ( $data['post_type'] === 'note' && $data['post_status'] !== 'trash'){
+function make_note_private( $data ) {
+	if ( $data['post_type'] === 'note' ) {
+		$data['post_content'] = sanitize_textarea_field( $data['post_content'] );
+	}
+
+	if ( $data['post_type'] === 'note' && $data['post_status'] !== 'trash' ) {
 		$data['post_status'] = 'private';
-	};
+	}
+
 	return $data;
 }
+
