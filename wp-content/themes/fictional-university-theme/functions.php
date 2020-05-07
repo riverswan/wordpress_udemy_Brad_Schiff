@@ -164,11 +164,15 @@ function our_login_title() {
 }
 
 
-add_filter( 'wp_insert_post_data', 'make_note_private' );
+add_filter( 'wp_insert_post_data', 'make_note_private', 10, 2 );
 
-function make_note_private( $data ) {
+function make_note_private( $data, $post_array ) {
 	if ( $data['post_type'] === 'note' ) {
+		if ( count_user_posts( get_current_user_id(), 'note' ) > 5 && ! $post_array['ID'] ) {
+			die( 'You have reached note limit' );
+		}
 		$data['post_content'] = sanitize_textarea_field( $data['post_content'] );
+		$data['post_title']   = sanitize_text_field( $data['post_title'] );
 	}
 
 	if ( $data['post_type'] === 'note' && $data['post_status'] !== 'trash' ) {
