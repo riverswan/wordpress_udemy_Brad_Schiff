@@ -22,7 +22,11 @@ class MyNotes {
                 xhr.setRequestHeader('X-WP-Nonce',universityData.nonce);
             },
             success :  (resp) => {
+                console.log(resp)
                 thisNote.slideUp();
+                if (parseInt(resp.notes_count) < 5) {
+                    $('.note-limit-message').removeClass('active');
+                }
             },
             error : (resp)=>{
                 console.log('error');
