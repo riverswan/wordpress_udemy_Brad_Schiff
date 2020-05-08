@@ -42,7 +42,7 @@ while ( have_posts() ) {
 	                        }
                         }
                     ?>
-                    <span class="like-box" data-professor="<?php the_ID(); ?>" data-exists="<?php echo $exist_status?>">
+                    <span class="like-box" data-like="<?php echo $exist_query->posts[0]->ID; ?>" data-professor="<?php the_ID(); ?>" data-exists="<?php echo $exist_status?>">
                         <i class="fa fa-heart-o"></i>
                         <i class="fa fa-heart"></i>
                         <span class="like-count"><?php echo $like_count->found_posts ?></span>
