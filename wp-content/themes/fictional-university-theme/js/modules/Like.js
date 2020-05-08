@@ -19,7 +19,7 @@ class Like {
     }
 
     createLike(){
-        alert('create')
+
     }
 
     deleteLike(){
