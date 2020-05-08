@@ -12,18 +12,21 @@ class Like {
     ourClickDispatcher(e){
         let currLikeBox = $(e.target).closest('.like-box');
         if (currLikeBox.data('exists') === 'yes'){
-            this.deleteLike()
+            this.deleteLike( currLikeBox )
         }else {
-            this.createLike()
+            this.createLike( currLikeBox )
         }
     }
 
-    createLike(){
+    createLike( currLikeBox ){
         $.ajax({
             url : universityData.root_url + '/wp-json/university/v1/manageLike' ,
             type : 'POST',
+            beforeSend : (xhr) => {
+                xhr.setRequestHeader('X-WP-Nonce',universityData.nonce);
+            },
             data : {
-              'professotId' : 1234567
+              'professorId' : currLikeBox.data('professor')
             },
             success : (resp)=>{
                 console.log(resp)
@@ -34,7 +37,7 @@ class Like {
         })
     }
 
-    deleteLike(){
+    deleteLike( currLikeBox ){
         $.ajax({
             url : universityData.root_url + '/wp-json/university/v1/manageLike' ,
             type : 'DELETE',
