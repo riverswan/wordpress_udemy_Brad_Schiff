@@ -29,7 +29,7 @@ function create_like($data){
 				)
 			)
 		));
-		if ($exist_query){
+		if ($exist_query->found_posts === 0  && get_post_type($professor) === 'professor'){
 			return wp_insert_post(array(
 				'post_type' => 'like',
 				'post_status' => 'publish',
