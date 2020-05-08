@@ -16,7 +16,14 @@ function university_like_routes(){
 }
 
 function create_like(){
-	return 'like created';
+	wp_insert_post(array(
+		'post_type' => 'like',
+		'post_status' => 'publish',
+		'post_title' => '2 Our PHP test',
+		'meta_input' => array(
+			'like_professor_id' => 1234
+		)
+	));
 }
 
 function delete_like(){

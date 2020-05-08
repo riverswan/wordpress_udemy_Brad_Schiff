@@ -19,11 +19,32 @@ class Like {
     }
 
     createLike(){
-
+        $.ajax({
+            url : universityData.root_url + '/wp-json/university/v1/manageLike' ,
+            type : 'POST',
+            data : {
+              'professotId' : 1234567
+            },
+            success : (resp)=>{
+                console.log(resp)
+            },
+            error : (resp)=>{
+                console.log(resp)
+            }
+        })
     }
 
     deleteLike(){
-        alert('delete')
+        $.ajax({
+            url : universityData.root_url + '/wp-json/university/v1/manageLike' ,
+            type : 'DELETE',
+            success : (resp)=>{
+                console.log(resp)
+            },
+            error : (resp)=>{
+                console.log(resp)
+            }
+        })
     }
 }
 
