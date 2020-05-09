@@ -211,6 +211,7 @@ function wdm_register_mce_button( $buttons ) {
 }
 
 
+
 // declare a script for the new button
 // the script will insert the shortcode on the click event
 function wdm_add_tinymce_plugin( $plugin_array ) {
