@@ -44,3 +44,8 @@ p, li {
   line-height: 1.65;
 }
 
+
+.bold {
+  font-weight: bold;
+  background-color: red;
+}
