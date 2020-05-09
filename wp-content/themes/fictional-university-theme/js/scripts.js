@@ -17,3 +17,4 @@ var googleMap = new GoogleMap();
 var search = new Search();
 var notes = new MyNotes();
 var like = new Like();
+import '/modules/tiny';
