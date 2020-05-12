@@ -190,4 +190,3 @@ function make_note_private( $data, $post_array ) {
 	return $data;
 }
 
-
