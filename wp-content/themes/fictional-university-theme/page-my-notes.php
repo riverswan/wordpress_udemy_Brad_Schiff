@@ -31,12 +31,13 @@ while ( have_posts() ) {
 				$user_notes->the_post(); ?>
 
                 <li data-id="<?php the_ID(); ?>">
-                    <input readonly class="note-title-field" type="text" value="<?php echo str_replace('Private: ','',esc_attr( get_the_title() )) ?>">
+                    <input readonly class="note-title-field" type="text"
+                           value="<?php echo str_replace( 'Private: ', '', esc_attr( get_the_title() ) ) ?>">
                     <span class="edit-note"><i class="fa fa-pencil"></i>Edit</span>
                     <span class="delete-note"><i class="fa fa-trash-o"></i>Delete</span>
                     <textarea readonly class="note-body-field" name="" id="" cols="30"
                               rows="10"><?php echo esc_textarea( get_the_content() ) ?></textarea>
-	                <span class="update-note btn btn--blue btn--small"><i class="fa fa-arrow-right"></i>Save</span>
+                    <span class="update-note btn btn--blue btn--small"><i class="fa fa-arrow-right"></i>Save</span>
                 </li>
 
 				<?php
