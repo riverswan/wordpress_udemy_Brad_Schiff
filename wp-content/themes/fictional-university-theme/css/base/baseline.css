@@ -1,31 +1,31 @@
 @define-mixin atSmall {
-  @media (min-width: 530px) {
-    @mixin-content;
-  }
+    @media (min-width: 530px) {
+        @mixin-content ;
+    }
 }
 
 @define-mixin atSmallMedium {
-  @media (min-width: 767px) {
-    @mixin-content;
-  }
+    @media (min-width: 767px) {
+        @mixin-content ;
+    }
 }
 
 @define-mixin atMedium {
-  @media (min-width: 960px) {
-    @mixin-content;
-  }
+    @media (min-width: 960px) {
+        @mixin-content ;
+    }
 }
 
 body {
-  color: #333;
-  font-family: 'Roboto', sans-serif;
-  overflow-x: hidden;
-  position: relative;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+    position: relative;
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 /*a {*/
@@ -33,13 +33,13 @@ img {
 /*}*/
 
 a:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 p, ul, ol {
-  margin: 0 0 1.65em 0;
+    margin: 0 0 1.65em 0;
 }
 
 p, li {
-  line-height: 1.65;
+    line-height: 1.65;
 }
