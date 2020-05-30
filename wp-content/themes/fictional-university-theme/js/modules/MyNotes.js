@@ -35,7 +35,6 @@ class MyNotes {
         })
     }
 
-
     makeNoteEditable(thisNote){
         thisNote.find('.edit-note').html('<i class="fa fa-times"></i>Cancel');
         thisNote.find('.update-note').addClass('update-note--visible');
