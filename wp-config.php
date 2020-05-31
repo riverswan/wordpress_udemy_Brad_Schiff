@@ -19,17 +19,33 @@
  */
 
 // ** Параметры MySQL: Эту информацию можно получить у вашего хостинг-провайдера ** //
-/** Имя базы данных для WordPress */
-define( 'DB_NAME', 'wpbs' );
 
-/** Имя пользователя MySQL */
-define( 'DB_USER', 'root' );
+if ( file_exists(dirname(__FILE__) . '/local.php') ){
+	/** Имя базы данных для WordPress */
+	define( 'DB_NAME', 'wpbs' );
 
-/** Пароль к базе данных MySQL */
-define( 'DB_PASSWORD', '' );
+	/** Имя пользователя MySQL */
+	define( 'DB_USER', 'root' );
 
-/** Имя сервера MySQL */
-define( 'DB_HOST', 'localhost' );
+	/** Пароль к базе данных MySQL */
+	define( 'DB_PASSWORD', '' );
+
+	/** Имя сервера MySQL */
+	define( 'DB_HOST', 'localhost' );
+}else {
+
+	/** Имя базы данных для WordPress */
+	define( 'DB_NAME', 'wpbs' );
+
+	/** Имя пользователя MySQL */
+	define( 'DB_USER', 'root' );
+
+	/** Пароль к базе данных MySQL */
+	define( 'DB_PASSWORD', '' );
+
+	/** Имя сервера MySQL */
+	define( 'DB_HOST', 'localhost' );
+}
 
 /** Кодировка базы данных для создания таблиц. */
 define( 'DB_CHARSET', 'utf8mb4' );

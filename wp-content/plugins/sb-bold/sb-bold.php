@@ -31,7 +31,7 @@ function my_custom_styles( $init_array ) {
 			'title' => 'Bold',
 			'block' => 'span',
 			'classes' => 'bold',
-			'wrapper' => true,
+			'wrapper' => false,
 		)
 	);
 	$init_array['style_formats'] = json_encode( $style_formats );
